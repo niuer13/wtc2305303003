@@ -357,7 +357,12 @@ function RelatedSpecimens({ currentPlant, onSelect }: { currentPlant: Plant, onS
             className="group cursor-pointer p-4 rounded-3xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/20 transition-all"
           >
             <div className="aspect-[4/3] rounded-2xl overflow-hidden mb-4 relative">
-              <ImagePlaceholder className="w-full h-full" text="SPECIMEN" />
+              <img 
+                src={plant.image} 
+                alt={plant.name}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                referrerPolicy="no-referrer"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
             <div className="space-y-1">
@@ -661,7 +666,7 @@ export default function App() {
                     initial={{ y: 30, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.1 }}
-                    className="text-8xl md:text-[12rem] font-bold font-display tracking-tighter leading-[0.8] uppercase"
+                    className="text-8xl md:text-[12rem] font-bold font-display tracking-normal leading-[1.1] uppercase"
                   >
                     探索<span className="italic text-emerald-500">演化</span><br />
                     的<span className="font-medium">边缘</span>
@@ -682,13 +687,13 @@ export default function App() {
                       className="flex flex-col items-end gap-6"
                     >
                       <div className="flex flex-wrap gap-4 justify-end">
-                        <div className="glass-panel p-6 rounded-2xl text-right group hover:bg-emerald-500/10 transition-colors">
-                          <p className="text-3xl font-bold font-display">15+</p>
-                          <p className="text-[10px] uppercase tracking-widest opacity-50 font-mono">收录标本</p>
+                        <div className="glass-panel p-8 rounded-[2rem] flex flex-col items-center justify-center group hover:bg-emerald-500/10 transition-all min-w-[160px]">
+                          <p className="text-5xl font-bold font-display leading-none tracking-tighter">15+</p>
+                          <p className="text-[11px] uppercase tracking-[0.3em] opacity-40 font-mono mt-4">收录标本</p>
                         </div>
-                        <div className="glass-panel p-6 rounded-2xl text-right group hover:bg-emerald-500/10 transition-colors">
-                          <p className="text-3xl font-bold font-display">3</p>
-                          <p className="text-[10px] uppercase tracking-widest opacity-50 font-mono">极端生境</p>
+                        <div className="glass-panel p-8 rounded-[2rem] flex flex-col items-center justify-center group hover:bg-emerald-500/10 transition-all min-w-[160px]">
+                          <p className="text-5xl font-bold font-display leading-none tracking-tighter">3</p>
+                          <p className="text-[11px] uppercase tracking-[0.3em] opacity-40 font-mono mt-4">极端生境</p>
                         </div>
                       </div>
                       <button 
@@ -734,14 +739,14 @@ export default function App() {
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: i * 0.1 }}
-                          className="flex gap-6 group"
+                          className="group flex items-center gap-8"
                         >
-                          <div className="w-14 h-14 shrink-0 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors">
-                            <item.icon className="w-6 h-6 text-emerald-500" />
+                          <div className="w-16 h-16 shrink-0 rounded-[1.25rem] bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-emerald-500/20 transition-all duration-500">
+                            <item.icon className="w-7 h-7 text-emerald-500 transition-transform group-hover:scale-110" />
                           </div>
-                          <div className="space-y-2">
-                            <h4 className="text-xl font-bold font-display">{item.title}</h4>
-                            <p className="text-sm text-muted leading-relaxed font-sans">{item.desc}</p>
+                          <div className="flex-1 space-y-1.5">
+                            <h4 className="text-2xl font-bold font-display text-white tracking-tight">{item.title}</h4>
+                            <p className="text-sm text-muted leading-relaxed font-sans max-w-md opacity-70">{item.desc}</p>
                           </div>
                         </motion.div>
                       ))}
@@ -750,12 +755,14 @@ export default function App() {
                   <div className="relative aspect-square">
                     <div className="absolute inset-0 bg-emerald-500/10 rounded-[4rem] rotate-6" />
                     <div className="absolute inset-0 bg-white/5 border border-white/10 rounded-[4rem] backdrop-blur-3xl overflow-hidden">
-                      <ImagePlaceholder className="w-full h-full opacity-40" text="RESEARCH VISUAL" />
+                      <img 
+                        src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=1200" 
+                        alt="Research Methodology"
+                        className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-700"
+                        referrerPolicy="no-referrer"
+                      />
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-center space-y-4">
-                          <Fingerprint className="w-24 h-24 mx-auto text-emerald-500/50" />
-                          <p className="text-[10px] uppercase tracking-[0.5em] font-mono">Biological Authentication</p>
-                        </div>
+                        {/* Removed Fingerprint and Authentication text */}
                       </div>
                     </div>
                   </div>
@@ -786,7 +793,12 @@ export default function App() {
                       }}
                       className="group relative rounded-[2.5rem] overflow-hidden cursor-pointer border border-white/10 aspect-[4/5]"
                     >
-                      <ImagePlaceholder className="w-full h-full" text="SPECIMEN" />
+                      <img 
+                        src={plant.image} 
+                        alt={plant.name}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        referrerPolicy="no-referrer"
+                      />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
                       
                       <div className="absolute bottom-0 left-0 right-0 p-8 space-y-4">
@@ -844,11 +856,16 @@ export default function App() {
                   >
                     {/* Biome Backgrounds */}
                     <div className="absolute inset-0 z-0">
-                      <ImagePlaceholder className="w-full h-full opacity-20 group-hover:opacity-40 transition-opacity" text={cat.biomeName} />
+                      <img 
+                        src={cat.image} 
+                        alt={cat.biomeName}
+                        className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700"
+                        referrerPolicy="no-referrer"
+                      />
                       <div className={`absolute inset-0 bg-gradient-to-t ${
-                        cat.biome === 'swamp' ? 'from-emerald-950/90 via-emerald-950/40' :
-                        cat.biome === 'forest' ? 'from-orange-950/90 via-orange-950/40' :
-                        'from-stone-950/90 via-stone-950/40'
+                        cat.biome === 'swamp' ? 'from-emerald-950/80 via-emerald-950/20' :
+                        cat.biome === 'forest' ? 'from-orange-950/80 via-orange-950/20' :
+                        'from-stone-950/80 via-stone-950/20'
                       } to-transparent`} />
                     </div>
 
@@ -860,9 +877,6 @@ export default function App() {
                             cat.biome === 'forest' ? 'bg-orange-500' :
                             'bg-stone-400'
                           }`} />
-                          <span className="text-[10px] uppercase tracking-[0.4em] font-bold opacity-70">
-                            {cat.biomeEnglish}
-                          </span>
                         </div>
                         <h3 className="text-4xl font-medium tracking-tight">{cat.biomeName}</h3>
                       </div>
@@ -883,12 +897,7 @@ export default function App() {
                       </div>
                     </div>
 
-                    {/* Decorative Biome Icons */}
-                    <div className="absolute top-10 right-10 opacity-10 group-hover:opacity-30 transition-opacity">
-                      {cat.biome === 'swamp' && <Wind className="w-16 h-16" />}
-                      {cat.biome === 'forest' && <Zap className="w-16 h-16" />}
-                      {cat.biome === 'desert' && <MapIcon className="w-16 h-16" />}
-                    </div>
+                    {/* Decorative Biome Icons Removed */}
                   </motion.div>
                 ))}
               </div>
@@ -970,7 +979,12 @@ export default function App() {
                     className="group relative bg-white/5 rounded-[2.5rem] p-8 border border-white/5 hover:border-emerald-500/30 transition-all cursor-pointer overflow-hidden flex flex-col"
                   >
                     <div className="relative aspect-[4/5] rounded-3xl overflow-hidden mb-8 shadow-2xl">
-                      <ImagePlaceholder className="w-full h-full" text="SPECIMEN" />
+                      <img 
+                        src={plant.image} 
+                        alt={plant.name}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        referrerPolicy="no-referrer"
+                      />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
                       
                       <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center gap-2">
@@ -1062,27 +1076,7 @@ export default function App() {
                 {/* Visual & Data Column */}
                 <div className="space-y-8">
                   <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl group bg-white/5 border border-white/5">
-                    {viewMode === 'image' ? (
-                      <ImagePlaceholder className="w-full h-full opacity-40" text="SPECIMEN VISUAL" />
-                    ) : (
-                      <Plant3DViewer modelUrl={selectedPlant.modelUrl || ''} />
-                    )}
-                    
-                    {/* View Mode Toggle */}
-                    <div className="absolute top-6 right-6 flex gap-2">
-                      <button 
-                        onClick={() => setViewMode('image')}
-                        className={`p-3 rounded-2xl backdrop-blur-md border transition-all ${viewMode === 'image' ? 'bg-emerald-500 border-emerald-500 text-black' : 'bg-black/40 border-white/10 text-white hover:bg-black/60'}`}
-                      >
-                        <ImageIcon className="w-4 h-4" />
-                      </button>
-                      <button 
-                        onClick={() => setViewMode('3d')}
-                        className={`p-3 rounded-2xl backdrop-blur-md border transition-all ${viewMode === '3d' ? 'bg-emerald-500 border-emerald-500 text-black' : 'bg-black/40 border-white/10 text-white hover:bg-black/60'}`}
-                      >
-                        <Box className="w-4 h-4" />
-                      </button>
-                    </div>
+                    <Plant3DViewer modelUrl={selectedPlant.modelUrl || ''} />
                   </div>
                   
                   <div className="p-8 rounded-[2rem] bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">

@@ -1,6 +1,20 @@
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Stage, useGLTF, PresentationControls, Float } from '@react-three/drei';
+import { OrbitControls, Stage, useGLTF, PresentationControls, Float, useProgress, Html } from '@react-three/drei';
 import { Suspense } from 'react';
+
+function Loader() {
+  const { progress } = useProgress();
+  return (
+    <Html center>
+      <div className="flex flex-col items-center gap-4">
+        <div className="w-12 h-12 rounded-full border-2 border-emerald-500/20 border-t-emerald-500 animate-spin" />
+        <p className="text-[10px] font-mono text-emerald-500 uppercase tracking-[0.2em] whitespace-nowrap">
+          正在同步数据 {progress.toFixed(0)}%
+        </p>
+      </div>
+    </Html>
+  );
+}
 
 function Model({ url }: { url: string }) {
   const { scene } = useGLTF(url);
@@ -17,9 +31,9 @@ export default function Plant3DViewer({ modelUrl }: { modelUrl: string }) {
   }
 
   return (
-    <div className="w-full h-full bg-black/20 rounded-3xl overflow-hidden border border-white/5">
+    <div className="w-full h-full bg-black/20 rounded-3xl overflow-hidden border border-white/5 relative">
       <Canvas shadows camera={{ position: [0, 0, 4], fov: 45 }}>
-        <Suspense fallback={null}>
+        <Suspense fallback={<Loader />}>
           <PresentationControls
             global
             snap
