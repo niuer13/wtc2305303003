@@ -1,6 +1,35 @@
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Stage, useGLTF, PresentationControls, Float, useProgress, Html } from '@react-three/drei';
-import { Suspense } from 'react';
+import { OrbitControls, Stage, useGLTF, Html } from '@react-three/drei';
+import { Suspense, Component, ReactNode } from 'react';
+
+class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
+  constructor(props: { children: ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <Html center>
+          <div className="flex flex-col items-center gap-2 text-center px-4">
+            <p className="text-[10px] font-mono text-red-400 uppercase tracking-widest">
+              模型加载失败
+            </p>
+            <p className="text-[8px] font-mono opacity-40 uppercase tracking-tighter">
+              请检查网络连接 (可能需要代理)
+            </p>
+          </div>
+        </Html>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 function Loader() {
   return (
@@ -32,21 +61,27 @@ export default function Plant3DViewer({ modelUrl }: { modelUrl: string }) {
 
   return (
     <div className="w-full h-full bg-black/20 rounded-3xl overflow-hidden border border-white/5 relative">
-      <Canvas shadows camera={{ position: [0, 0, 4], fov: 45 }}>
+      <Canvas 
+        shadows 
+        camera={{ position: [0, 0, 4], fov: 45 }}
+        dpr={[1, 2]} // Optimize for mobile high-DPI screens
+        gl={{ antialias: true, powerPreference: "high-performance" }}
+      >
         <Suspense fallback={<Loader />}>
-          <Stage environment="city" adjustCamera intensity={0.5} contactShadow={false}>
-            <Model url={modelUrl} />
-          </Stage>
-          <OrbitControls 
-            makeDefault 
-            enableZoom={false} 
-            enablePan={false} 
-            autoRotate 
-            autoRotateSpeed={2} 
-          />
+          <ErrorBoundary>
+            <Stage environment="city" adjustCamera intensity={0.5}>
+              <Model url={modelUrl} />
+            </Stage>
+            <OrbitControls 
+              makeDefault 
+              enableZoom={false} 
+              enablePan={false} 
+              autoRotate 
+              autoRotateSpeed={2} 
+            />
+          </ErrorBoundary>
         </Suspense>
       </Canvas>
-      
     </div>
   );
 }
