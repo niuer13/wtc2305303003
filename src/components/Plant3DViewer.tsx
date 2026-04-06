@@ -47,7 +47,7 @@ export default function Plant3DViewer({ modelUrl }: { modelUrl: string }) {
               </Stage>
             </Float>
           </PresentationControls>
-          <OrbitControls makeDefault enableZoom={false} />
+          <OrbitControls makeDefault enableZoom={false} autoRotate autoRotateSpeed={2} />
         </Suspense>
       </Canvas>
       
