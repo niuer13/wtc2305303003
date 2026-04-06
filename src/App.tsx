@@ -492,6 +492,110 @@ function PlantStats({ stats, color, category }: { stats: Plant['stats'], color: 
   );
 }
 
+// Custom Logo Component (Cell-like Design)
+function Logo() {
+  return (
+    <div className="relative w-10 h-10 flex items-center justify-center group">
+      {/* Cell Membrane (Organic Pulsating Shape) */}
+      <motion.div
+        animate={{
+          scale: [1, 1.05, 1],
+          rotate: [0, 90, 180, 270, 360],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+        className="absolute inset-0 opacity-20"
+      >
+        <svg viewBox="0 0 100 100" className="w-full h-full fill-emerald-500">
+          <motion.path
+            animate={{
+              d: [
+                "M50,10 Q80,10 90,50 Q80,90 50,90 Q20,90 10,50 Q20,10 50,10",
+                "M50,15 Q70,5 85,50 Q70,95 50,85 Q30,95 15,50 Q30,5 50,15",
+                "M50,10 Q80,10 90,50 Q80,90 50,90 Q20,90 10,50 Q20,10 50,10"
+              ]
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        </svg>
+      </motion.div>
+
+      {/* Secondary Membrane Layer */}
+      <motion.div
+        animate={{
+          scale: [1.1, 0.95, 1.1],
+          rotate: [360, 0],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+        className="absolute inset-0 opacity-10"
+      >
+        <svg viewBox="0 0 100 100" className="w-full h-full fill-emerald-400">
+          <motion.path
+            animate={{
+              d: [
+                "M50,20 Q70,20 80,50 Q70,80 50,80 Q30,80 20,50 Q30,20 50,20",
+                "M50,5 Q95,50 50,95 Q5,50 50,5",
+                "M50,20 Q70,20 80,50 Q70,80 50,80 Q30,80 20,50 Q30,20 50,20"
+              ]
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        </svg>
+      </motion.div>
+      
+      {/* Nucleus (Core) */}
+      <motion.div 
+        animate={{ 
+          scale: [1, 1.15, 1],
+          boxShadow: [
+            "0 0 10px rgba(16,185,129,0.3)",
+            "0 0 25px rgba(16,185,129,0.6)",
+            "0 0 10px rgba(16,185,129,0.3)"
+          ]
+        }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        className="relative z-10 w-4 h-4 bg-emerald-500 rounded-full flex items-center justify-center"
+      >
+        <div className="w-1.5 h-1.5 bg-white/60 rounded-full blur-[0.5px]" />
+      </motion.div>
+
+      {/* Organelles / Floating Particles */}
+      {[...Array(4)].map((_, i) => (
+        <motion.div
+          key={i}
+          animate={{
+            x: [0, (i % 2 === 0 ? 1 : -1) * 10, 0],
+            y: [0, (i < 2 ? 1 : -1) * 10, 0],
+            opacity: [0.2, 0.6, 0.2]
+          }}
+          transition={{
+            duration: 5 + i,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: i * 0.8
+          }}
+          className="absolute w-1 h-1 bg-emerald-300/40 rounded-full"
+        />
+      ))}
+    </div>
+  );
+}
+
 export default function App() {
   const [isExploring, setIsExploring] = useState(false);
   const [currentCategory, setCurrentCategory] = useState<string | null>(null);
@@ -614,14 +718,12 @@ export default function App() {
       <ResearchStatusBar />
       <header className="fixed top-0 sm:top-6 left-0 right-0 z-50 p-4 sm:p-6 flex justify-between items-center backdrop-blur-md border-b border-white/5">
         <div 
-          className="flex items-center gap-2 sm:gap-3 cursor-pointer group"
+          className="flex items-center gap-3 sm:gap-4 cursor-pointer group"
           onClick={() => { setIsExploring(false); setCurrentCategory(null); setSelectedPlant(null); }}
         >
-          <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:border-emerald-500/50 transition-colors">
-            <Leaf className="w-5 h-5 text-emerald-500" />
-          </div>
+          <Logo />
           <div>
-            <h1 className="text-xl font-bold tracking-tight font-sans">植物志</h1>
+            <h1 className="text-xl font-bold tracking-tight font-sans group-hover:text-emerald-400 transition-colors">植物志</h1>
             <p className="text-[10px] uppercase tracking-[0.2em] opacity-50 font-mono">Flora Archive</p>
           </div>
         </div>
