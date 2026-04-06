@@ -34,27 +34,19 @@ export default function Plant3DViewer({ modelUrl }: { modelUrl: string }) {
     <div className="w-full h-full bg-black/20 rounded-3xl overflow-hidden border border-white/5 relative">
       <Canvas shadows camera={{ position: [0, 0, 4], fov: 45 }}>
         <Suspense fallback={<Loader />}>
-          <PresentationControls
-            global
-            snap
-            rotation={[0, 0.3, 0]}
-            polar={[-Math.PI / 3, Math.PI / 3]}
-            azimuth={[-Math.PI / 1.4, Math.PI / 1.4]}
-          >
-            <Float rotationIntensity={0.5} floatIntensity={0.5} speed={2}>
-              <Stage environment="city">
-                <Model url={modelUrl} />
-              </Stage>
-            </Float>
-          </PresentationControls>
-          <OrbitControls makeDefault enableZoom={false} autoRotate autoRotateSpeed={2} />
+          <Stage environment="city" adjustCamera intensity={0.5} contactShadow={false}>
+            <Model url={modelUrl} />
+          </Stage>
+          <OrbitControls 
+            makeDefault 
+            enableZoom={false} 
+            enablePan={false} 
+            autoRotate 
+            autoRotateSpeed={2} 
+          />
         </Suspense>
       </Canvas>
       
-      {/* 3D Interaction Hint */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 pointer-events-none">
-        <p className="text-[10px] font-mono uppercase tracking-widest opacity-60">拖动以旋转 · 3D 交互模式</p>
-      </div>
     </div>
   );
 }
