@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Inter", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-sans: "Arial", "Microsoft YaHei", "微软雅黑", "PingFang SC", "Hiragino Sans GB", "STHeiti", "WenQuanYi Micro Hei", sans-serif;
+  --font-display: "Arial", "Microsoft YaHei", "微软雅黑", "PingFang SC", "Hiragino Sans GB", "STHeiti", "WenQuanYi Micro Hei", sans-serif;
+  --font-mono: "JetBrains Mono", "Microsoft YaHei", "微软雅黑", ui-monospace, SFMono-Regular, monospace;
 
   --color-ink: #0A0A0A;
   --color-paper: #E4E3E0;
