@@ -30,16 +30,18 @@ function ImagePlaceholder({ className, text = "IMAGE" }: { className?: string, t
 // Environment Component
 function PlantEnvironment({ env }: { env: Plant['environment'] }) {
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
       {[
         { label: '适宜温度', value: env.temp, icon: Thermometer, color: 'text-orange-400' },
         { label: '环境湿度', value: env.humidity, icon: Droplets, color: 'text-blue-400' },
         { label: '光照需求', value: env.light, icon: Sun, color: 'text-yellow-400' },
       ].map((item) => (
-        <div key={item.label} className="p-4 rounded-2xl bg-white/5 border border-white/5 flex flex-col items-center text-center gap-2 group hover:bg-white/10 transition-colors">
-          <item.icon className={`w-5 h-5 ${item.color} mb-1`} />
-          <span className="text-[10px] uppercase tracking-widest opacity-40 font-mono">{item.label}</span>
-          <span className="text-xs font-medium font-sans">{item.value}</span>
+        <div key={item.label} className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/5 flex flex-row sm:flex-col items-center sm:justify-center text-left sm:text-center gap-3 sm:gap-2 group hover:bg-white/10 transition-colors">
+          <item.icon className={`w-4 h-4 sm:w-5 sm:h-5 ${item.color} shrink-0`} />
+          <div className="flex flex-col">
+            <span className="text-[8px] sm:text-[10px] uppercase tracking-widest opacity-40 font-mono">{item.label}</span>
+            <span className="text-xs font-medium font-sans">{item.value}</span>
+          </div>
         </div>
       ))}
     </div>
@@ -49,53 +51,53 @@ function PlantEnvironment({ env }: { env: Plant['environment'] }) {
 // Discovery Log Component
 function DiscoveryLog({ plant }: { plant: Plant }) {
   return (
-    <div className="relative p-10 rounded-[2rem] bg-[#1a1512] border border-orange-900/20 overflow-hidden group">
-      <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-        <ScrollText className="w-40 h-40" />
+    <div className="relative p-6 sm:p-10 rounded-[1.5rem] sm:rounded-[2rem] bg-[#1a1512] border border-orange-900/20 overflow-hidden group">
+      <div className="absolute top-0 right-0 p-4 sm:p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+        <ScrollText className="w-24 h-24 sm:w-40 sm:h-40" />
       </div>
       
-      <div className="relative z-10 space-y-8">
-        <div className="flex items-center justify-between border-b border-orange-900/20 pb-6">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-orange-900/20 flex items-center justify-center">
-              <PenTool className="w-6 h-6 text-orange-500/70" />
+      <div className="relative z-10 space-y-6 sm:space-y-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-orange-900/20 pb-4 sm:pb-6 gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-orange-900/20 flex items-center justify-center shrink-0">
+              <PenTool className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500/70" />
             </div>
             <div>
-              <h4 className="text-xl font-display font-bold italic text-orange-200/80">考察日志</h4>
-              <p className="text-[10px] uppercase tracking-[0.3em] opacity-40 font-mono">Explorer's Field Notes</p>
+              <h4 className="text-lg sm:text-xl font-display font-bold italic text-orange-200/80">考察日志</h4>
+              <p className="text-[8px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.3em] opacity-40 font-mono">Explorer's Field Notes</p>
             </div>
           </div>
-          <div className="text-right">
-            <p className="text-[10px] font-mono opacity-40 uppercase tracking-widest">Specimen Status</p>
-            <p className="text-xs font-bold text-emerald-500 uppercase tracking-widest">Active / Monitored</p>
+          <div className="text-left sm:text-right">
+            <p className="text-[8px] sm:text-[10px] font-mono opacity-40 uppercase tracking-widest">Specimen Status</p>
+            <p className="text-[10px] sm:text-xs font-bold text-emerald-500 uppercase tracking-widest">Active / Monitored</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
+          <div className="space-y-3 sm:space-y-4">
             <div className="flex items-center gap-2">
               <div className="w-1 h-1 rounded-full bg-orange-500" />
-              <h5 className="text-xs uppercase tracking-widest text-orange-500/60 font-mono font-bold">形态观察</h5>
+              <h5 className="text-[10px] sm:text-xs uppercase tracking-widest text-orange-500/60 font-mono font-bold">形态观察</h5>
             </div>
-            <p className="text-sm font-sans leading-relaxed text-orange-100/60 italic">
+            <p className="text-xs sm:text-sm font-sans leading-relaxed text-orange-100/60 italic">
               “这种植物展现出了令人惊叹的进化智慧。它的{plant.mechanism.split('：')[0]}结构不仅是生存的工具，更是自然界精密的工程杰作。在野外观察中，我们发现其{plant.description.slice(0, 20)}... 的特征在特定光线下显得格外诡秘。”
             </p>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             <div className="flex items-center gap-2">
               <div className="w-1 h-1 rounded-full bg-orange-500" />
-              <h5 className="text-xs uppercase tracking-widest text-orange-500/60 font-mono font-bold">生存策略</h5>
+              <h5 className="text-[10px] sm:text-xs uppercase tracking-widest text-orange-500/60 font-mono font-bold">生存策略</h5>
             </div>
-            <p className="text-sm font-sans leading-relaxed text-orange-100/60 italic">
+            <p className="text-xs sm:text-sm font-sans leading-relaxed text-orange-100/60 italic">
               “与其说它是在生长，不如说它是在‘狩猎’或‘博弈’。它对环境的适应性极强，尤其是在{plant.environment.temp}和{plant.environment.humidity}的条件下，其活跃度达到了巅峰。这再次证明了生命在极端环境下的无限可能。”
             </p>
           </div>
         </div>
 
-        <div className="pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 border-t border-orange-900/10 text-orange-100/40 text-[10px] uppercase tracking-widest font-mono">
-          <div className="flex items-center gap-4">
+        <div className="pt-4 sm:pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4 border-t border-orange-900/10 text-orange-100/40 text-[8px] sm:text-[10px] uppercase tracking-widest font-mono">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             <span>Location: {plant.environment.temp} Zone</span>
-            <span className="opacity-20">|</span>
+            <span className="opacity-20 hidden sm:inline">|</span>
             <span>Date: 2026.03.25</span>
           </div>
           <div className="flex items-center gap-2">
@@ -170,14 +172,14 @@ function HabitatMap({ category }: { category: string }) {
 function Marquee() {
   const items = ["CRITICAL SPECIMEN DETECTED", "EVOLUTIONARY ANOMALY", "HABITAT LOSS ALERT", "NEW DISCOVERY IN AMAZON", "MIMICRY LEVEL: EXPERT"];
   return (
-    <div className="py-4 border-y border-white/5 overflow-hidden whitespace-nowrap bg-emerald-500/5">
+    <div className="py-2 sm:py-4 border-y border-white/5 overflow-hidden whitespace-nowrap bg-emerald-500/5">
       <motion.div 
         animate={{ x: [0, -1000] }}
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         className="inline-block"
       >
         {[...items, ...items].map((item, i) => (
-          <span key={i} className="text-[10px] font-mono font-bold tracking-[0.4em] mx-12 opacity-40">
+          <span key={i} className="text-[8px] sm:text-[10px] font-mono font-bold tracking-[0.3em] sm:tracking-[0.4em] mx-6 sm:mx-12 opacity-40">
             {item}
           </span>
         ))}
@@ -278,8 +280,8 @@ function MechanismBreakdown({ mechanism }: { mechanism: string }) {
 // Research Status Bar for Home Page
 function ResearchStatusBar() {
   return (
-    <div className="w-full bg-emerald-950/40 border-b border-emerald-500/10 py-1.5 px-6 flex justify-between items-center text-[8px] uppercase tracking-[0.3em] font-mono text-emerald-500/60 relative z-50">
-      <div className="flex items-center gap-6">
+    <div className="w-full bg-emerald-950/40 border-b border-emerald-500/10 py-1.5 px-4 sm:px-6 flex justify-between items-center text-[8px] uppercase tracking-[0.3em] font-mono text-emerald-500/60 relative z-50">
+      <div className="flex items-center gap-4 sm:gap-6">
         <div className="flex items-center gap-2">
           <div className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
           STATION: FLORA-MIRABILIS-01
@@ -610,9 +612,9 @@ export default function App() {
 
       {/* Navigation Header */}
       <ResearchStatusBar />
-      <header className="fixed top-6 left-0 right-0 z-50 p-6 flex justify-between items-center backdrop-blur-md border-b border-white/5">
+      <header className="fixed top-0 sm:top-6 left-0 right-0 z-50 p-4 sm:p-6 flex justify-between items-center backdrop-blur-md border-b border-white/5">
         <div 
-          className="flex items-center gap-3 cursor-pointer group"
+          className="flex items-center gap-2 sm:gap-3 cursor-pointer group"
           onClick={() => { setIsExploring(false); setCurrentCategory(null); setSelectedPlant(null); }}
         >
           <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:border-emerald-500/50 transition-colors">
@@ -667,17 +669,17 @@ export default function App() {
                     initial={{ y: 30, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.1 }}
-                    className="text-8xl md:text-[12rem] font-bold font-display tracking-normal leading-[1.1] uppercase"
+                    className="text-5xl sm:text-7xl md:text-[10rem] lg:text-[12rem] font-bold font-display tracking-tight leading-[1.1] uppercase"
                   >
                     探索<span className="italic text-emerald-500">演化</span><br />
                     的<span className="font-medium">边缘</span>
                   </motion.h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center pt-12">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center pt-8 md:pt-12">
                     <motion.p 
                       initial={{ x: -30, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ delay: 0.2 }}
-                      className="text-left text-xl text-muted font-sans leading-relaxed border-l-2 border-emerald-500/30 pl-8"
+                      className="text-left text-lg sm:text-xl text-muted font-sans leading-relaxed border-l-2 border-emerald-500/30 pl-6 sm:pl-8"
                     >
                       从幽暗沼泽的致命陷阱到荒漠深处的伪装大师。我们记录、分析并还原自然界中最不可思议的生存策略。
                     </motion.p>
@@ -685,21 +687,21 @@ export default function App() {
                       initial={{ x: 30, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ delay: 0.3 }}
-                      className="flex flex-col items-end gap-6"
+                      className="flex flex-col items-center md:items-end gap-6"
                     >
-                      <div className="flex flex-wrap gap-4 justify-end">
-                        <div className="glass-panel p-8 rounded-[2rem] flex flex-col items-center justify-center group hover:bg-emerald-500/10 transition-all min-w-[160px]">
-                          <p className="text-5xl font-bold font-display leading-none tracking-tighter">15+</p>
-                          <p className="text-[11px] uppercase tracking-[0.3em] opacity-40 font-mono mt-4">收录标本</p>
+                      <div className="flex flex-wrap gap-3 sm:gap-4 justify-center md:justify-end">
+                        <div className="glass-panel p-6 sm:p-8 rounded-[2rem] flex flex-col items-center justify-center group hover:bg-emerald-500/10 transition-all min-w-[140px] sm:min-w-[160px]">
+                          <p className="text-4xl sm:text-5xl font-bold font-display leading-none tracking-tighter">15+</p>
+                          <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.3em] opacity-40 font-mono mt-3 sm:mt-4">收录标本</p>
                         </div>
-                        <div className="glass-panel p-8 rounded-[2rem] flex flex-col items-center justify-center group hover:bg-emerald-500/10 transition-all min-w-[160px]">
-                          <p className="text-5xl font-bold font-display leading-none tracking-tighter">3</p>
-                          <p className="text-[11px] uppercase tracking-[0.3em] opacity-40 font-mono mt-4">极端生境</p>
+                        <div className="glass-panel p-6 sm:p-8 rounded-[2rem] flex flex-col items-center justify-center group hover:bg-emerald-500/10 transition-all min-w-[140px] sm:min-w-[160px]">
+                          <p className="text-4xl sm:text-5xl font-bold font-display leading-none tracking-tighter">3</p>
+                          <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.3em] opacity-40 font-mono mt-3 sm:mt-4">极端生境</p>
                         </div>
                       </div>
                       <button 
                         onClick={() => setIsExploring(true)}
-                        className="px-10 py-4 rounded-full bg-emerald-500 text-black font-bold uppercase tracking-widest text-xs hover:scale-105 transition-transform flex items-center gap-2"
+                        className="w-full sm:w-auto px-10 py-4 rounded-full bg-emerald-500 text-black font-bold uppercase tracking-widest text-xs hover:scale-105 transition-transform flex items-center justify-center gap-2"
                       >
                         立即开启探索 <ArrowUpRight className="w-4 h-4" />
                       </button>
@@ -721,14 +723,14 @@ export default function App() {
               <Marquee />
 
               {/* Core Mission / Features - Split Layout */}
-              <section className="py-32 px-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                  <div className="space-y-12">
+              <section className="py-20 sm:py-32 px-4 sm:px-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                  <div className="space-y-8 sm:space-y-12">
                     <div className="space-y-4">
                       <p className="text-[10px] uppercase tracking-[0.4em] text-emerald-500 font-bold font-mono">Our Methodology</p>
-                      <h3 className="text-6xl font-bold font-display leading-tight">打破常规的<br />自然观察</h3>
+                      <h3 className="text-4xl sm:text-5xl md:text-6xl font-bold font-display leading-tight">打破常规的<br />自然观察</h3>
                     </div>
-                    <div className="space-y-8">
+                    <div className="space-y-6 sm:space-y-8">
                       {[
                         { icon: Microscope, title: '深度解剖', desc: '通过 3D 模型与高清影像，全方位解析植物的捕食与寄生机制。' },
                         { icon: Compass, title: '生境探索', desc: '深入三大极端生物群落，寻找那些在不可能之地绽放的生命。' },
@@ -740,22 +742,22 @@ export default function App() {
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: i * 0.1 }}
-                          className="group flex items-center gap-8"
+                          className="group flex items-start sm:items-center gap-4 sm:gap-8"
                         >
-                          <div className="w-16 h-16 shrink-0 rounded-[1.25rem] bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-emerald-500/20 transition-all duration-500">
-                            <item.icon className="w-7 h-7 text-emerald-500 transition-transform group-hover:scale-110" />
+                          <div className="w-12 h-12 sm:w-16 sm:h-16 shrink-0 rounded-2xl sm:rounded-[1.25rem] bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-emerald-500/20 transition-all duration-500">
+                            <item.icon className="w-5 h-5 sm:w-7 sm:h-7 text-emerald-500 transition-transform group-hover:scale-110" />
                           </div>
-                          <div className="flex-1 space-y-1.5">
-                            <h4 className="text-2xl font-bold font-display text-white tracking-tight">{item.title}</h4>
-                            <p className="text-sm text-muted leading-relaxed font-sans max-w-md opacity-70">{item.desc}</p>
+                          <div className="flex-1 space-y-1 sm:space-y-1.5">
+                            <h4 className="text-xl sm:text-2xl font-bold font-display text-white tracking-tight">{item.title}</h4>
+                            <p className="text-xs sm:text-sm text-muted leading-relaxed font-sans max-w-md opacity-70">{item.desc}</p>
                           </div>
                         </motion.div>
                       ))}
                     </div>
                   </div>
-                  <div className="relative aspect-square">
-                    <div className="absolute inset-0 bg-emerald-500/10 rounded-[4rem] rotate-6" />
-                    <div className="absolute inset-0 bg-white/5 border border-white/10 rounded-[4rem] backdrop-blur-3xl overflow-hidden">
+                  <div className="relative aspect-square max-w-xl mx-auto lg:max-w-none w-full">
+                    <div className="absolute inset-0 bg-emerald-500/10 rounded-[2.5rem] sm:rounded-[4rem] rotate-3 sm:rotate-6" />
+                    <div className="absolute inset-0 bg-white/5 border border-white/10 rounded-[2.5rem] sm:rounded-[4rem] backdrop-blur-3xl overflow-hidden">
                       <img 
                         src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=1200" 
                         alt="Research Methodology"
@@ -771,11 +773,11 @@ export default function App() {
               </section>
 
               {/* Featured Specimens - Bento Grid */}
-              <section className="space-y-12 px-6">
+              <section className="space-y-8 sm:space-y-12 px-4 sm:px-6">
                 <div className="flex items-end justify-between">
                   <div className="space-y-2">
                     <p className="text-[10px] uppercase tracking-[0.4em] text-emerald-500 font-bold font-mono">Featured Specimens</p>
-                    <h3 className="text-6xl font-bold font-display">本月推荐标本</h3>
+                    <h3 className="text-4xl sm:text-5xl md:text-6xl font-bold font-display">本月推荐标本</h3>
                   </div>
                 </div>
 
@@ -830,7 +832,7 @@ export default function App() {
                 <motion.h2 
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  className="text-6xl md:text-8xl font-light tracking-tighter"
+                  className="text-4xl sm:text-6xl md:text-8xl font-light tracking-tighter"
                 >
                   生命<span className="italic font-sans text-emerald-500">版图</span>
                 </motion.h2>
@@ -838,13 +840,13 @@ export default function App() {
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.1 }}
-                  className="max-w-2xl mx-auto text-lg opacity-50 font-light"
+                  className="max-w-2xl mx-auto text-base sm:text-lg opacity-50 font-light px-4"
                 >
                   点击进入特定地貌，探索那些在极端环境中绽放的非凡生命。
                 </motion.p>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[600px] md:h-[700px]">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-auto lg:h-[600px] md:lg:h-[700px]">
                 {categories.map((cat, index) => (
                   <motion.div
                     key={cat.id}
@@ -853,7 +855,7 @@ export default function App() {
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ scale: 1.02 }}
                     onClick={() => setCurrentCategory(cat.id)}
-                    className={`group relative rounded-[2.5rem] overflow-hidden cursor-pointer border border-white/10 flex flex-col justify-end p-10 transition-all duration-500`}
+                    className={`group relative rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden cursor-pointer border border-white/10 flex flex-col justify-end p-8 sm:p-10 transition-all duration-500 min-h-[400px] lg:min-h-0`}
                   >
                     {/* Biome Backgrounds */}
                     <div className="absolute inset-0 z-0">
@@ -929,7 +931,7 @@ export default function App() {
                       {categories.find(c => c.id === currentCategory)?.biomeEnglish}
                     </p>
                   </div>
-                  <h2 className="text-8xl font-bold font-display tracking-tighter uppercase">
+                  <h2 className="text-5xl sm:text-6xl md:text-8xl font-bold font-display tracking-tighter uppercase leading-none">
                     {categories.find(c => c.id === currentCategory)?.biomeName}
                   </h2>
                 </div>
@@ -945,7 +947,7 @@ export default function App() {
                       className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-4 text-sm focus:outline-none focus:border-emerald-500/50 transition-all placeholder:opacity-30"
                     />
                   </div>
-                  <div className="flex items-center gap-2 p-1 bg-white/5 border border-white/10 rounded-2xl">
+                  <div className="flex items-center gap-1 p-1 bg-white/5 border border-white/10 rounded-2xl w-full sm:w-auto overflow-x-auto no-scrollbar">
                     {[
                       { id: 'name', label: '名称' },
                       { id: 'rarity', label: '稀有度' },
@@ -954,7 +956,7 @@ export default function App() {
                       <button
                         key={s.id}
                         onClick={() => setSortBy(s.id as any)}
-                        className={`px-4 py-2 rounded-xl text-[10px] uppercase tracking-widest font-bold transition-all ${
+                        className={`flex-1 sm:flex-none px-4 py-2 rounded-xl text-[10px] whitespace-nowrap uppercase tracking-widest font-bold transition-all ${
                           sortBy === s.id ? 'bg-white/10 text-white' : 'text-white/30 hover:text-white/60'
                         }`}
                       >
@@ -1000,20 +1002,20 @@ export default function App() {
                       </div>
                     </div>
 
-                    <div className="flex-1 space-y-6">
+                    <div className="flex-1 space-y-4 sm:space-y-6">
                       <div className="space-y-2">
-                        <h3 className="text-3xl font-bold font-display tracking-tight group-hover:text-emerald-400 transition-colors">{plant.name}</h3>
+                        <h3 className="text-2xl sm:text-3xl font-bold font-display tracking-tight group-hover:text-emerald-400 transition-colors">{plant.name}</h3>
                         <p className="text-[10px] uppercase tracking-[0.3em] opacity-30 font-mono">Specimen ID: {plant.id.toUpperCase()}</p>
                       </div>
 
                       <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/5">
                         <div className="space-y-1">
                           <p className="text-[8px] uppercase tracking-widest opacity-30 font-mono">Power Level</p>
-                          <p className="text-lg font-bold font-display">{plant.stats.power}%</p>
+                          <p className="text-base sm:text-lg font-bold font-display">{plant.stats.power}%</p>
                         </div>
                         <div className="space-y-1 text-right">
                           <p className="text-[8px] uppercase tracking-widest opacity-30 font-mono">Complexity</p>
-                          <p className="text-lg font-bold font-display">{plant.stats.complexity}%</p>
+                          <p className="text-base sm:text-lg font-bold font-display">{plant.stats.complexity}%</p>
                         </div>
                       </div>
 
@@ -1054,20 +1056,20 @@ export default function App() {
               className="space-y-12"
             >
               {/* Quick Stats Bar */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 rounded-[2rem] bg-white/5 border border-white/10 backdrop-blur-xl">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 p-4 sm:p-6 rounded-[1.5rem] sm:rounded-[2rem] bg-white/5 border border-white/10 backdrop-blur-xl">
                 {[
                   { label: '稀有度', value: `${selectedPlant.stats.rarity}%`, icon: Star, color: 'text-purple-400' },
                   { label: '危险等级', value: selectedPlant.stats.power > 80 ? '极高' : '中等', icon: Shield, color: 'text-red-400' },
                   { label: '演化代号', value: selectedPlant.id.toUpperCase(), icon: Target, color: 'text-emerald-400' },
                   { label: '生境类型', value: categories.find(c => c.id === selectedPlant.category)?.name, icon: Globe, color: 'text-blue-400' },
                 ].map((stat, i) => (
-                  <div key={i} className="flex items-center gap-4 px-4 border-r border-white/5 last:border-0">
-                    <div className={`w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center ${stat.color}`}>
-                      <stat.icon className="w-5 h-5" />
+                  <div key={i} className="flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-4 px-2 sm:px-4 border-r border-white/5 last:border-0 text-center sm:text-left">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-white/5 flex items-center justify-center shrink-0">
+                      <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 text-current opacity-70" />
                     </div>
-                    <div>
-                      <p className="text-[10px] uppercase tracking-widest opacity-40 font-mono">{stat.label}</p>
-                      <p className="text-sm font-bold font-display">{stat.value}</p>
+                    <div className="min-w-0">
+                      <p className="text-[8px] sm:text-[10px] uppercase tracking-widest opacity-40 font-mono truncate">{stat.label}</p>
+                      <p className="text-xs sm:text-sm font-bold font-display truncate">{stat.value}</p>
                     </div>
                   </div>
                 ))}
@@ -1103,39 +1105,39 @@ export default function App() {
                 {/* Narrative & Analysis Column */}
                 <div className="space-y-12">
                   <section>
-                    <p className="text-xs uppercase tracking-[0.4em] text-emerald-500 mb-4 font-mono font-bold">
+                    <p className="text-[10px] uppercase tracking-[0.4em] text-emerald-500 mb-3 sm:mb-4 font-mono font-bold">
                       {categories.find(c => c.id === selectedPlant.category)?.name} / SPECIMEN ANALYSIS
                     </p>
-                    <h2 className="text-7xl font-bold font-display mb-6 tracking-tighter leading-none">{selectedPlant.name}</h2>
-                    <div className="h-1 w-32 bg-emerald-500 rounded-full" />
+                    <h2 className="text-4xl sm:text-6xl md:text-7xl font-bold font-display mb-4 sm:mb-6 tracking-tighter leading-none">{selectedPlant.name}</h2>
+                    <div className="h-1 w-24 sm:w-32 bg-emerald-500 rounded-full" />
                   </section>
 
                   <PlantEnvironment env={selectedPlant.environment} />
 
                   <MechanismBreakdown mechanism={selectedPlant.mechanism} />
 
-                  <section className="space-y-8">
+                  <section className="space-y-6 sm:space-y-8">
                     <div className="flex items-center gap-3 text-sm font-medium uppercase tracking-widest font-mono">
                       <BookOpen className="w-4 h-4 text-emerald-500" /> 详细过程 / EVOLUTIONARY PROCESS
                     </div>
-                    <div className="p-10 rounded-[3rem] bg-white/5 border border-white/5 backdrop-blur-sm relative overflow-hidden group">
+                    <div className="p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] bg-white/5 border border-white/5 backdrop-blur-sm relative overflow-hidden group">
                       <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                         <MapIcon className="w-40 h-40" />
                       </div>
-                      <p className="text-2xl font-sans font-light leading-relaxed relative z-10 text-emerald-50/90 italic">
+                      <p className="text-lg sm:text-2xl font-sans font-light leading-relaxed relative z-10 text-emerald-50/90 italic">
                         “{selectedPlant.process}”
                       </p>
                     </div>
                   </section>
 
-                  <section className="space-y-8">
+                  <section className="space-y-6 sm:space-y-8">
                     <div className="flex items-center gap-3 text-sm font-medium uppercase tracking-widest italic font-display">
                       <Star className="w-4 h-4 text-orange-400" /> 神话与传说 / MYTHOLOGY
                     </div>
-                    <div className="p-10 rounded-[3rem] bg-orange-950/5 border border-orange-500/10 italic font-sans text-2xl leading-relaxed text-[#d0c8c0] relative">
-                      <span className="absolute top-4 left-6 text-6xl opacity-10 font-sans">“</span>
+                    <div className="p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] bg-orange-950/5 border border-orange-500/10 italic font-sans text-lg sm:text-2xl leading-relaxed text-[#d0c8c0] relative">
+                      <span className="absolute top-4 left-6 text-4xl sm:text-6xl opacity-10 font-sans">“</span>
                       {selectedPlant.mythology}
-                      <span className="absolute bottom-4 right-6 text-6xl opacity-10 font-sans">”</span>
+                      <span className="absolute bottom-4 right-6 text-4xl sm:text-6xl opacity-10 font-sans">”</span>
                     </div>
                   </section>
 
