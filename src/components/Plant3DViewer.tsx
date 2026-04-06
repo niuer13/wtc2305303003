@@ -3,14 +3,14 @@ import { OrbitControls, Stage, useGLTF, PresentationControls, Float, useProgress
 import { Suspense } from 'react';
 
 function Loader() {
-  const { progress } = useProgress();
   return (
     <Html center>
-      <div className="flex flex-col items-center gap-4">
-        <div className="w-12 h-12 rounded-full border-2 border-emerald-500/20 border-t-emerald-500 animate-spin" />
-        <p className="text-[10px] font-mono text-emerald-500 uppercase tracking-[0.2em] whitespace-nowrap">
-          正在同步数据 {progress.toFixed(0)}%
-        </p>
+      <div className="flex flex-col items-center justify-center">
+        <div className="relative w-16 h-16">
+          <div className="absolute inset-0 rounded-full border-2 border-emerald-500/10" />
+          <div className="absolute inset-0 rounded-full border-t-2 border-emerald-500 animate-spin" />
+          <div className="absolute inset-2 rounded-full border-2 border-emerald-500/5 animate-pulse" />
+        </div>
       </div>
     </Html>
   );

@@ -504,8 +504,8 @@ export default function App() {
     offset: ["start start", "end end"]
   });
 
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.1], [1, 0.95]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.95]);
 
   const featuredPlants = useMemo(() => {
     return [
@@ -610,7 +610,7 @@ export default function App() {
 
       {/* Navigation Header */}
       <ResearchStatusBar />
-      <header className="fixed top-6 left-0 right-0 z-50 p-6 flex justify-between items-center backdrop-blur-md border-b border-white/5">
+      <header className="fixed top-0 sm:top-6 left-0 right-0 z-50 p-4 sm:p-6 flex justify-between items-center backdrop-blur-md border-b border-white/5">
         <div 
           className="flex items-center gap-3 cursor-pointer group"
           onClick={() => { setIsExploring(false); setCurrentCategory(null); setSelectedPlant(null); }}
@@ -667,17 +667,17 @@ export default function App() {
                     initial={{ y: 30, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.1 }}
-                    className="text-8xl md:text-[12rem] font-bold font-display tracking-normal leading-[1.1] uppercase"
+                    className="text-5xl sm:text-7xl md:text-9xl lg:text-[12rem] font-bold font-display tracking-normal leading-[1.1] uppercase"
                   >
                     探索<span className="italic text-emerald-500">演化</span><br />
                     的<span className="font-medium">边缘</span>
                   </motion.h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center pt-12">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center pt-8 md:pt-12">
                     <motion.p 
                       initial={{ x: -30, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ delay: 0.2 }}
-                      className="text-left text-xl text-muted font-sans leading-relaxed border-l-2 border-emerald-500/30 pl-8"
+                      className="text-center md:text-left text-base sm:text-xl text-muted font-sans leading-relaxed border-l-0 md:border-l-2 border-emerald-500/30 pl-0 md:pl-8"
                     >
                       从幽暗沼泽的致命陷阱到荒漠深处的伪装大师。我们记录、分析并还原自然界中最不可思议的生存策略。
                     </motion.p>
@@ -685,16 +685,16 @@ export default function App() {
                       initial={{ x: 30, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ delay: 0.3 }}
-                      className="flex flex-col items-end gap-6"
+                      className="flex flex-col items-center md:items-end gap-6"
                     >
-                      <div className="flex flex-wrap gap-4 justify-end">
-                        <div className="glass-panel p-8 rounded-[2rem] flex flex-col items-center justify-center group hover:bg-emerald-500/10 transition-all min-w-[160px]">
-                          <p className="text-5xl font-bold font-display leading-none tracking-tighter">15+</p>
-                          <p className="text-[11px] uppercase tracking-[0.3em] opacity-40 font-mono mt-4">收录标本</p>
+                      <div className="flex flex-wrap gap-4 justify-center md:justify-end">
+                        <div className="glass-panel p-6 sm:p-8 rounded-[2rem] flex flex-col items-center justify-center group hover:bg-emerald-500/10 transition-all min-w-[140px] sm:min-w-[160px]">
+                          <p className="text-4xl sm:text-5xl font-bold font-display leading-none tracking-tighter">15+</p>
+                          <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.3em] opacity-40 font-mono mt-4">收录标本</p>
                         </div>
-                        <div className="glass-panel p-8 rounded-[2rem] flex flex-col items-center justify-center group hover:bg-emerald-500/10 transition-all min-w-[160px]">
-                          <p className="text-5xl font-bold font-display leading-none tracking-tighter">3</p>
-                          <p className="text-[11px] uppercase tracking-[0.3em] opacity-40 font-mono mt-4">极端生境</p>
+                        <div className="glass-panel p-6 sm:p-8 rounded-[2rem] flex flex-col items-center justify-center group hover:bg-emerald-500/10 transition-all min-w-[140px] sm:min-w-[160px]">
+                          <p className="text-4xl sm:text-5xl font-bold font-display leading-none tracking-tighter">3</p>
+                          <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.3em] opacity-40 font-mono mt-4">极端生境</p>
                         </div>
                       </div>
                       <button 
