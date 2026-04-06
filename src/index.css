@@ -1,33 +1,70 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
 @import "tailwindcss";
 
 @theme {
+  /* Font Families */
   --font-sans: "Arial", "Microsoft YaHei", "微软雅黑", "PingFang SC", "Hiragino Sans GB", "STHeiti", "WenQuanYi Micro Hei", sans-serif;
   --font-display: "Arial", "Microsoft YaHei", "微软雅黑", "PingFang SC", "Hiragino Sans GB", "STHeiti", "WenQuanYi Micro Hei", sans-serif;
   --font-mono: "JetBrains Mono", "Microsoft YaHei", "微软雅黑", ui-monospace, SFMono-Regular, monospace;
 
+  /* Color Palette */
   --color-ink: #0A0A0A;
   --color-paper: #E4E3E0;
-  --color-accent-emerald: #10B981;
-  --color-accent-amber: #F59E0B;
-  --color-accent-stone: #78716C;
+  --color-emerald-primary: #10B981;
+  --color-amber-accent: #F59E0B;
+  --color-stone-muted: #78716C;
 }
 
 @layer base {
   body {
     @apply bg-ink text-paper font-sans antialiased;
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
     background-image: 
-      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
     background-size: 40px 40px;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-tight;
+  /* Typography Hierarchy */
+  h1 {
+    @apply font-display font-bold;
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  h2 {
+    @apply font-display font-bold;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  h3 {
+    @apply font-display font-semibold;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    @apply font-sans font-normal;
+    color: rgba(228, 227, 224, 0.85);
+  }
+
+  /* Captions & Labels */
+  .label-mono {
+    @apply font-mono font-medium uppercase;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    line-height: 1;
+    color: rgba(228, 227, 224, 0.5);
   }
 
   .font-mono {
-    @apply font-mono tracking-tight;
+    @apply font-mono;
   }
 }
 

@@ -68,8 +68,8 @@ function DiscoveryLog({ plant }: { plant: Plant }) {
             </div>
           </div>
           <div className="text-left sm:text-right">
-            <p className="text-[8px] sm:text-[10px] font-mono opacity-40 uppercase tracking-widest">Specimen Status</p>
-            <p className="text-[10px] sm:text-xs font-bold text-emerald-500 uppercase tracking-widest">Active / Monitored</p>
+            <p className="label-mono">Specimen Status</p>
+            <p className="text-[10px] sm:text-xs font-bold text-emerald-primary uppercase tracking-widest">Active / Monitored</p>
           </div>
         </div>
 
@@ -345,7 +345,7 @@ function RelatedSpecimens({ currentPlant, onSelect }: { currentPlant: Plant, onS
       <div className="flex items-center justify-between">
         <div className="space-y-1">
           <h4 className="text-2xl font-display font-bold uppercase tracking-tight">相关标本</h4>
-          <p className="text-[10px] uppercase tracking-[0.3em] opacity-40 font-mono">Related Research Specimens</p>
+          <p className="label-mono">Related Research Specimens</p>
         </div>
         <div className="h-px flex-1 mx-8 bg-white/5" />
       </div>
@@ -1107,7 +1107,7 @@ export default function App() {
                     <div className="flex-1 space-y-4 sm:space-y-6">
                       <div className="space-y-2">
                         <h3 className="text-2xl sm:text-3xl font-bold font-display tracking-tight group-hover:text-emerald-400 transition-colors">{plant.name}</h3>
-                        <p className="text-[10px] uppercase tracking-[0.3em] opacity-30 font-mono">Specimen ID: {plant.id.toUpperCase()}</p>
+          <p className="label-mono">Specimen ID: {plant.id.toUpperCase()}</p>
                       </div>
 
                       <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/5">
