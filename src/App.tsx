@@ -538,6 +538,7 @@ export default function App() {
 
   // Reset search when category changes
   useEffect(() => {
+    document.title = "植物志 (Flora Archive)";
     setSearchQuery('');
     setSortBy('name');
     window.scrollTo(0, 0);
